@@ -21,7 +21,7 @@ Additionally, identifiers such as `name`, `model`, `brand`, and `regionCode` hav
 
 ### Objective
 
-Develop and optimize a regression model capable of accurately predicting the transaction prices of used cars using both the **explicit features** (e.g., power, kilometer, body type) and the **anonymous features** ($v_0$–$v_{14}$), while minimizing the MAE score on the test sets.
+Develop and optimize a regression model capable of accurately predicting the transaction prices of used cars using both the **explicit features** (e.g., power, kilometer, body type) and the **anonymous features** $(v_0 - v_{14})$, while minimizing the MAE score on the test sets.
 
 ---
 
