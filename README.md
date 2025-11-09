@@ -69,6 +69,8 @@ A **lower MAE** indicates better model performance.
 ---
 
 ## Structure of my GitHub
+📂 Structure of My Repository
+
 project-root/
 ├── .gitattributes # Git text and end-of-line normalization
 ├── .gitignore # Ignore unnecessary files (e.g., cache, temp, checkpoints)
@@ -85,7 +87,7 @@ project-root/
 ├── used_car_testB_20200421.zip # Test dataset B (additional data)
 │
 ├── Step_1_EDA.ipynb # Step 1: Exploratory Data Analysis (EDA)
-├── Step_2_Feature_Engineering.ipynb # Step 2: Feature Engineering and Preprocessing
+├── Step_2_Feature_Engineering.ipynb# Step 2: Feature Engineering and Preprocessing
 ├── Step_3_Modeling.ipynb # Step 3: Model training, tuning, and evaluation
 │
 ├── README.md # Project documentation
