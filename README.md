@@ -69,28 +69,26 @@ A **lower MAE** indicates better model performance.
 ---
 
 ## Structure of my GitHub
-📂 Structure of My Repository
 
 project-root/
-├── .gitattributes # Git text and end-of-line normalization
-├── .gitignore # Ignore unnecessary files (e.g., cache, temp, checkpoints)
+├── .gitattributes                  # Git text and end-of-line normalization
+├── .gitignore                      # Ignore unnecessary files (e.g., cache, temp, checkpoints)
 │
-├── best_model.joblib # Saved trained model (Joblib format)
+├── best_model.joblib               # Saved trained model (Joblib format)
 │
-├── data_for_lr.csv # Cleaned dataset for Linear Regression model
-├── data_for_lr.zip # Compressed version of the linear regression dataset
-├── data_for_tree.csv # Cleaned dataset for tree-based models
+├── data_for_lr.csv                 # Cleaned dataset for Linear Regression model
+├── data_for_lr.zip                 # Compressed version of the linear regression dataset
+├── data_for_tree.csv               # Cleaned dataset for tree-based models
 │
-├── used_car_train_20200313.csv # Original training dataset
-├── used_car_testA_20200313.csv # Test dataset A (used for model evaluation)
+├── used_car_train_20200313.csv     # Original training dataset
+├── used_car_testA_20200313.csv     # Test dataset A (used for model evaluation)
 ├── used_car_testA_20200313.csv.zip
-├── used_car_testB_20200421.zip # Test dataset B (additional data)
+├── used_car_testB_20200421.zip     # Test dataset B (additional data)
 │
-├── Step_1_EDA.ipynb # Step 1: Exploratory Data Analysis (EDA)
+├── Step_1_EDA.ipynb                # Step 1: Exploratory Data Analysis (EDA)
 ├── Step_2_Feature_Engineering.ipynb# Step 2: Feature Engineering and Preprocessing
-├── Step_3_Modeling.ipynb # Step 3: Model training, tuning, and evaluation
-│
-├── README.md # Project documentation
+├── Step_3_Modeling.ipynb           # Step 3: Model training, tuning, and evaluation
+
 
 This repository contains the full workflow for a **used car price prediction** project, including:
 - **Data exploration and visualization**
