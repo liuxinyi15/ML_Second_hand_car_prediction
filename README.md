@@ -2,18 +2,14 @@
 
 ---
 
-## Dataset Description and Machine Learning Problem
+## Overview and Dataset Description
 
 ### Overview
 
-The competition aims to **predict the transaction price of used cars** based on their various features.  
+This repository implements a complete supervised Machine Learning pipeline to predict used car prices based on tabular data from the Used Car Dataset.
+The goal is to build a regression model capable of predicting price using various vehicle attributes.
 The dataset is provided by a major online used car trading platform and contains **over 400,000 transaction records**.  
 It includes **31 columns (features)**, of which **15 are anonymized variables** (`v_0` to `v_14`).
-
-To ensure fairness, the data has been split as follows:
-- **Training set:** 150,000 samples  
-- **Test set A:** 50,000 samples  
-- **Test set B:** 50,000 samples  
 
 Additionally, identifiers such as `name`, `model`, `brand`, and `regionCode` have been **desensitized (anonymized)** for privacy protection.
 
@@ -49,25 +45,6 @@ Develop and optimize a regression model capable of accurately predicting the tra
 
 ---
 
-### Machine Learning Task
-
-This is a **supervised regression problem**, where the goal is to predict the **used car price (`price`)** based on all other available features.
-
-The evaluation metric for the competition is **Mean Absolute Error (MAE)**, defined as:
-
-$$
-MAE = \frac{1}{n}\sum_{i=1}^{n} |y_i - \hat{y}_i|
-$$
-
-where  
-- $y_i$ = true price of the $i^{th}$ car  
-- $\hat{y}_i$ = predicted price of the $i^{th}$ car  
-- $n$ = total number of cars in the test set
-
-A **lower MAE** indicates better model performance.
-
----
-
 ## Structure of my GitHub
 ```python
 │
@@ -84,7 +61,7 @@ A **lower MAE** indicates better model performance.
 │   └── opt.db                             # Optuna database storing tuning results
 │
 ├── user_data/
-│   ├── best_model.joblib                  # Best tuned model
+│   ├── best_model.joblib                  # Trained Random Forest model
 │   ├── XGBoost_Model.joblib               # Trained XGBoost model
 │   └── price_log_transform.csv            # Cleaned + transformed training data
 │
@@ -94,9 +71,45 @@ A **lower MAE** indicates better model performance.
 
 
 This repository contains the full workflow for a **used car price prediction** project, including:
-- **Data exploration and visualization**
-- **Feature engineering and preprocessing**
-- **Model training and evaluation**
-- **Model saving and reuse**
+- Data preprocessing
+- Feature engineering
+- Outlier handling
+- Log transformation of target
+- Train/validation split
+- Model training (Random Forest+XGBoost)
+- Hyperparameter optimization using Optuna
 
-The `Step_3_Modeling.ipynb` notebook provides a detailed record of the entire model development and learning process, from baseline models to the optimized final version.
+---
+## Data preprocessing pipeling-Inside `feature/` folder
+
+- `fix_missing`
+  - Fills numerical missing values using median
+  - Adds an additional indicator column `xxx_na` when appropriate (`pd.get_dummies()` -> `process_df`)
+- `numericalize`
+    - Converts categorical variables into integer codes
+- `process_df`
+    - Remove ignored fields
+    - Applying custom preprocessing functions
+    - Handling missing values
+    - Converting categorical variables
+    - Genrating dummy vairables  (`pd.get_dummies()`)
+- `outlier removal`
+    - Use method based on quantile, remove values outside the quantile range 0.1-0.9
+- `log transformation`
+    `price -> price_log` to reduce skewness and stabilize variance
+
+---
+## Feature engineering
+- used_time
+- date-based features
+- interaction or aggregated variables (v_0, v_1, …, v_14)
+
+---
+## How to run the project
+
+- Step 1 - Install dependencies
+  ``` bash
+  pip install -r requirements.txt
+  ```
+- Step 2 - Open Jupyter Notebook in `main/` folder
+- Step 3 - Run the full pipeline `model/main.ipynb`
