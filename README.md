@@ -69,7 +69,7 @@ A **lower MAE** indicates better model performance.
 ---
 
 ## Structure of my GitHub
-.
+```python
 │
 ├── data/
 │   └── used_car_train_20200313.csv        # Raw training dataset
@@ -90,7 +90,7 @@ A **lower MAE** indicates better model performance.
 │
 ├── README.md
 └── requirements.txt
-
+```
 
 
 This repository contains the full workflow for a **used car price prediction** project, including:
