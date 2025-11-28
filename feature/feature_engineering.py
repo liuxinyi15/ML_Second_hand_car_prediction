@@ -10,9 +10,9 @@ warnings.filterwarnings('ignore')
 
 def outliers_proc(data,col_name,scale=3):
     def box_plot_outliers(data_serie,box_scale):
-        iqr=box_scale*(data_serie.quantile(0.75)-data_serie.quantile(0.25))
-        val_low=data_serie.quantile(0.25)-iqr
-        val_up=data_serie.quantile(0.75)+iqr
+        iqr=box_scale*(data_serie.quantile(0.9)-data_serie.quantile(0.1))
+        val_low=data_serie.quantile(0.1)-iqr
+        val_up=data_serie.quantile(0.9)+iqr
         rule_low=(data_serie<val_low)
         rule_up=(data_serie>val_up)
         return(rule_low,rule_up),(val_low,val_up)
