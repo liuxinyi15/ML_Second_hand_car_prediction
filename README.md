@@ -69,28 +69,28 @@ A **lower MAE** indicates better model performance.
 ---
 
 ## Structure of my GitHub
-```python
-project-root/
-├── .gitattributes                  # Git text and end-of-line normalization
-├── .gitignore                      # Ignore unnecessary files (e.g., cache, temp, checkpoints)
+.
 │
-├── best_model.joblib               # Saved trained model (Joblib format)
+├── data/
+│   └── used_car_train_20200313.csv        # Raw training dataset
 │
-├── data_for_lr.csv                 # Cleaned dataset for Linear Regression model
-├── data_for_lr.zip                 # Compressed version of the linear regression dataset
-├── data_for_tree.csv               # Cleaned dataset for tree-based models
+├── feature/
+│   ├── feature_engineering.py             # Feature engineering functions
+│   ├── process_data.py                    # Processing (fix_missing, numericalize, process_df)
+│   └── transform_to_log.py                # Log transform of the target variable
 │
-├── used_car_train_20200313.csv     # Original training dataset
-├── used_car_testA_20200313.csv     # Test dataset A (used for model evaluation)
-├── used_car_testA_20200313.csv.zip
-├── used_car_testB_20200421.zip     # Test dataset B (additional data)
+├── model/
+│   ├── main.ipynb                         # Main notebook (training + validation + inference)
+│   └── opt.db                             # Optuna database storing tuning results
 │
-├── Step_1_EDA.ipynb                # Step 1: Exploratory Data Analysis (EDA)
-├── Step_2_Feature_Engineering.ipynb# Step 2: Feature Engineering and Preprocessing
-├── Step_3_Modeling.ipynb           # Step 3: Model training, tuning, and evaluation
+├── user_data/
+│   ├── best_model.joblib                  # Best tuned model
+│   ├── XGBoost_Model.joblib               # Trained XGBoost model
+│   └── price_log_transform.csv            # Cleaned + transformed training data
 │
-├── README.md                       # Project documentation
-```
+├── README.md
+└── requirements.txt
+
 
 
 This repository contains the full workflow for a **used car price prediction** project, including:
