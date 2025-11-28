@@ -46,7 +46,7 @@ Develop and optimize a regression model capable of accurately predicting the tra
 ---
 
 ## Structure of my GitHub
-```python
+```bash
 │
 ├── data/
 │   └── used_car_train_20200313.csv        # Raw training dataset
