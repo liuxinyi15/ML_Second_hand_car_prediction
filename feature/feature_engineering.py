@@ -32,6 +32,10 @@ def outliers_proc(data,col_name,scale=3):
     outliers = data_series.iloc[index_up]
     print("Description of data larger than the upper bound is:")
     print(pd.Series(outliers).describe())
+    f, ax = plt.subplots(1, 2, figsize=(12, 9))
+    sns.boxplot(y=data[col_name], data=data, palette="Set1", ax=ax[0])
+    sns.boxplot(y=data_n[col_name], data=data_n, palette="Set1", ax=ax[1])
+    plt.show()
     return data_n
 
 def feature_engineering(df):
@@ -40,11 +44,11 @@ def feature_engineering(df):
     df['notRepairedDamage'] = df['notRepairedDamage'].replace({'-': np.nan}).astype(float)
     df['used_time'] = (pd.to_datetime(df['creatDate'], format='%Y%m%d', errors='coerce') - pd.to_datetime(df['regDate'], format='%Y%m%d', errors='coerce')).dt.days
     df['city'] = df['regionCode'].apply(lambda x: int(str(x)[-2:]))
-    df['km_per_year'] = df['kilometer'] / (df['used_time'] / 365 + 1)
+    df['km_per_year'] = df['kilometer'] /(df['used_time'] / 365 + 1)
     df['power_age'] = df['power'] * (df['used_time'] / 365)
     bin = [i*10 for i in range(31)]
     df['power_bin'] = pd.cut(df['power'], bin, labels=False)
-    df[['power_bin', 'power']].head()
+    df[['power_bin','power']].head()
     df.drop(['creatDate','regDate','regionCode'], axis=1, inplace=True)
 
     return df
