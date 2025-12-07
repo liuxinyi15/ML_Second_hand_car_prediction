@@ -63,8 +63,12 @@ Develop and optimize a regression model capable of accurately predicting the tra
 ├── user_data/
 │   ├── best_model.joblib                  # Trained Random Forest model
 │   ├── XGBoost_Model.joblib               # Trained XGBoost model
+│   ├── processed_data.csv                 # For visualization
+│   ├── processed_feature.csv              # For visualization
 │   └── price_log_transform.csv            # Cleaned + transformed training data
 │
+├── cisualization/
+│   ├── app.py                             # Streamlit visualization
 ├── README.md
 └── requirements.txt
 ```
@@ -113,3 +117,7 @@ This repository contains the full workflow for a **used car price prediction** p
   ```
 - Step 2 - Open Jupyter Notebook in `main/` folder
 - Step 3 - Run the full pipeline `model/main.ipynb`
+- Step 4 - Explore the visualization
+  ``` bash
+  streamlit run visualization/app.py
+  ``` 
