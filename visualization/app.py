@@ -24,14 +24,14 @@ Develop and optimize a regression model capable of accurately predicting the tra
 """)
 @st.cache_data
 def load_dataset():
-    df_path = os.path.join(DATA_DIR, "processed_features.csv")   
+    df_path = os.path.join(DATA_DIR,"processed_features.csv")   
     df = pd.read_csv(df_path)
     return df
 
 @st.cache_resource
 def load_models():
-    rf_path= os.path.join(MODEL_DIR, "rf_best.joblib")   
-    xgb_path= os.path.join(MODEL_DIR, "XGBoost_Model.joblib")   
+    rf_path=os.path.join(MODEL_DIR,"rf_best.joblib")   
+    xgb_path=os.path.join(MODEL_DIR,"XGBoost_Model.joblib")   
     rf_model=joblib.load(rf_path)
     xgb_model=joblib.load(xgb_path)
     return rf_model, xgb_model
@@ -54,12 +54,12 @@ def compute_predictions(df, _rf_model, _xgb_model):
 
 def display_features(df, index):
     st.subheader("Car Features")
-    row = df.iloc[index]
+    row=df.iloc[index]
     col_feat1,col_val1,col_feat2,col_val2=st.columns([2.5,1.5, 2.5,1.5])
     for i, col in enumerate(df.columns):
         if col == "price_log":
             continue
-        value = row[col]
+        value=row[col]
         if i%2==0:
             with col_feat1:
                 st.info(col)
@@ -79,7 +79,7 @@ def display_predictions_for_car(df_pred_all, saleid):
     pred_xgb=float(row["xgb_pred"])
     err_rf =pred_rf-true_price
     err_xgb= pred_xgb-true_price
-    pct_rf= 100* err_rf /true_price
+    pct_rf= 100*err_rf /true_price
     pct_xgb=100 *err_xgb/true_price
     col_rf, col_xgb, col_real = st.columns(3)
 
@@ -94,7 +94,7 @@ def display_predictions_for_car(df_pred_all, saleid):
         st.subheader("XGBoost Prediction")
         st.info(f"{pred_xgb:,.0f} €")
         st.write(f"Error: {err_xgb:,.0f} € ({pct_xgb:+.1f}%)")
-    st.subheader("Price Comparison (Visualization)")
+    st.subheader("Price Comparison (Bar Comparison)")
     chart_df = pd.DataFrame({
         "Model": ["True price", "Random Forest", "XGBoost"],
         "Price": [true_price, pred_rf, pred_xgb]
@@ -119,7 +119,7 @@ def eda_section(df, rf_model):
     st.header("Second-Hand Car Price Prediction-Exploratory Data Analysis (EDA)")
     st.markdown("This section gives an overview of the training dataset used by the models.")
     st.subheader("1. Dataset Overview")
-    col_a, col_b, col_c = st.columns(3)
+    col_a,col_b,col_c=st.columns(3)
     col_a.metric("Number of rows",df.shape[0])
     col_b.metric("Number of columns",df.shape[1])
     col_c.metric("Number of features",df.shape[1] - 2) 
@@ -128,8 +128,8 @@ def eda_section(df, rf_model):
 ###
     st.subheader("2. Price Distribution")
     price = np.expm1(df["price_log"])
-    fig, ax = plt.subplots(1, 2, figsize=(8, 4))
-    sns.histplot(price, bins=50, ax=ax[0], color="skyblue")
+    fig, ax = plt.subplots(1,2, figsize=(8, 3))
+    sns.histplot(price, bins=50, ax=ax[0], color="blue")
     ax[0].set_title("Raw Price Distribution")
     sns.histplot(df["price_log"], bins=50, ax=ax[1], color="orange")
     ax[1].set_title("Log Price Distribution (price_log)")
@@ -154,7 +154,7 @@ def eda_section(df, rf_model):
     selected_cols = ["price_log", "power", "kilometer", "model", "brand"]
     corr=df[selected_cols].corr()
     fig3,ax3 = plt.subplots(figsize=(6, 4))
-    sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f", ax=ax3)
+    sns.heatmap(corr,annot=True,fmt=".2f",ax=ax3)
     st.pyplot(fig3)
         
 def main():

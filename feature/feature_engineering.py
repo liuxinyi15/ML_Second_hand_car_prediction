@@ -40,14 +40,13 @@ def outliers_proc(data,col_name,scale=3):
 
 def feature_engineering(df):
     df = df.copy()
-
-    df['notRepairedDamage'] = df['notRepairedDamage'].replace({'-': np.nan}).astype(float)
-    df['used_time'] = (pd.to_datetime(df['creatDate'], format='%Y%m%d', errors='coerce') - pd.to_datetime(df['regDate'], format='%Y%m%d', errors='coerce')).dt.days
-    df['city'] = df['regionCode'].apply(lambda x: int(str(x)[-2:]))
-    df['km_per_year'] = df['kilometer'] /(df['used_time'] / 365 + 1)
-    df['power_age'] = df['power'] * (df['used_time'] / 365)
-    bin = [i*10 for i in range(31)]
-    df['power_bin'] = pd.cut(df['power'], bin, labels=False)
+    df['notRepairedDamage']=df['notRepairedDamage'].replace({'-': np.nan}).astype(float)
+    df['used_time']=(pd.to_datetime(df['creatDate'],format='%Y%m%d',errors='coerce')-pd.to_datetime(df['regDate'],format='%Y%m%d',errors='coerce')).dt.days
+    df['city']= df['regionCode'].apply(lambda x: int(str(x)[-2:]))
+    df['km_per_year'] =df['kilometer']/(df['used_time']/365+1)
+    df['power_age']=df['power']*(df['used_time']/365)
+    bin=[i*10 for i in range(31)]
+    df['power_bin']=pd.cut(df['power'], bin, labels=False)
     df[['power_bin','power']].head()
     df.drop(['creatDate','regDate','regionCode'], axis=1, inplace=True)
 

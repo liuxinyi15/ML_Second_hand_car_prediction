@@ -52,7 +52,6 @@ def numericalize(df: pd.DataFrame, col: str, name: str, max_n_cat: int | None) -
 
 def process_df(df: pd.DataFrame,y_field: str | None = None,skip_flds: list | None = None):
     df=df.copy()
-
     if skip_flds is None:
         skip_flds = []
     else:
