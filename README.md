@@ -69,7 +69,7 @@ Develop and optimize a regression model capable of accurately predicting the tra
 │   └── price_log_transform.csv            # Cleaned + transformed training data
 │
 ├── cisualization/
-│   ├── app.py                             # Streamlit visualization
+│   └── app.py                             # Streamlit visualization
 ├── README.md
 └── requirements.txt
 ```
