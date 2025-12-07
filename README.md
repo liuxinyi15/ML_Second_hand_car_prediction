@@ -63,6 +63,7 @@ Develop and optimize a regression model capable of accurately predicting the tra
 ├── user_data/
 │   ├── best_model.joblib                  # Trained Random Forest model
 │   ├── XGBoost_Model.joblib               # Trained XGBoost model
+│   ├── rf_best.joblib                     # The best model we have so far, but because it is too large to upload in Github, please try to create it by running our `main.ipynb`
 │   ├── processed_data.csv                 # For visualization
 │   ├── processed_feature.csv              # For visualization
 │   └── price_log_transform.csv            # Cleaned + transformed training data
